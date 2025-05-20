@@ -1,0 +1,170 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  color: #ddd;
+  margin: -100px;
+  padding: 0;
+}
+
+*{ /* POSICIONAMENTO DOS LINKS PARA NAVEGAÇÃO DA NAVBAR */
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+header {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #23252b9d;
+  background-size: cover;
+  background-size: 100vh;
+  box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+  padding: 0 50px;
+  transition: 0.6s;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 4vh;
+  outline: none;
+  margin-left: 100px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+header .logo-img {
+  width: 230px;
+  height: auto;
+  margin-block-start: 0px;
+  margin-left: -35px;
+}
+
+header .navigation {
+  position: static;
+  line-height: 75px;
+  transition: 0.6s;
+  transition-property: line-height;
+  
+}
+
+header .navigation .menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  user-select: none;
+}
+
+.menu-item a {
+  color: #fff;
+  text-decoration: none;
+  margin: 20px;
+  padding: 0;
+  transition: 0.3s;
+}
+
+.menu-item > a:hover { /* EFEITO QUANDO PASSAMOS O MOUSE SOBRE */
+  color: #fff;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+.barra {
+  color: #fff;
+}
+
+.hero {
+  margin-top: 100px; /* espaço por causa do header fixo */
+  height: 140vh;
+  max-width: 999;
+  background-color: #e1e1e1;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  background-repeat:no-repeat;
+}
+
+.galeria {
+  margin-top: 200px;
+  display: flex;
+  width: 600px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  width: 400%; /* 2 conjuntos de slides */
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  width: 50%; /* 2 fotos por slide */
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+}
+
+.slide img {
+  width: 200%;
+  border-radius: 8px;
+  object-fit: cover;
+  justify-content: space-between;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+/* Navegação por setas */
+.nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.nav label {
+  background: #fff;
+  color: #111;
+  padding: 6px 10px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.7;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.nav label:hover {
+  opacity: 1;
+}
+
+/* Controle do movimento dos slides */
+#slide1:checked ~ .slides {
+  transform: translateX(0%);
+}
+
+#slide2:checked ~ .slides {
+  transform: translateX(-50%);
+}
+
+#slide3:checked ~ .slides {
+      transform: translateX(-100%);
+}

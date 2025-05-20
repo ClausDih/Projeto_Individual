@@ -1,0 +1,110 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  color: #ddd;
+}
+
+*{ /* POSICIONAMENTO DOS LINKS PARA NAVEGAÇÃO DA NAVBAR */
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #23252b9d;
+  background-size: cover;
+  background-size: 100vh;
+  box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+  padding: 0 50px;
+  transition: 0.6s;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 4vh;
+  outline: none;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+header .logo-img {
+  width: 230px;
+  height: auto;
+
+}
+
+header .navigation {
+  position: static;
+  line-height: 75px;
+  transition: 0.6s;
+  transition-property: line-height;
+}
+
+header .navigation .menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  user-select: none;
+}
+
+.menu-item a {
+  color: #fff;
+  text-decoration: none;
+  margin: 20px; /* espaçamento entre os itens do menu */
+
+  transition: 0.3s;
+}
+
+.menu-item > a:hover { /* EFEITO QUANDO PASSAMOS O MOUSE SOBRE */
+  color: #fff;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+
+/* CONTEÚDO PRINCIPAL */
+.principal {
+  height: 140vh;
+  height: 100vh;
+  max-width: 999;
+  background-image: url('../ProjTEste/Imagens/trilha-rio-do-boi.jpeg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  background-repeat:no-repeat;
+}
+
+.principal h1 {
+  font-size: 4em;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.section {
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2.5em;
+  color: #546742;
+}
+
+.section p {
+  max-width: 800px;
+  margin: 20px auto;
+  font-size: 1.2em;
+  color: #555;
+}
