@@ -2,6 +2,9 @@ body {
   font-family: 'Quicksand', sans-serif;
   font-size: 16px;
   color: #ddd;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 *{ /* POSICIONAMENTO DOS LINKS PARA NAVEGAÇÃO DA NAVBAR */
@@ -19,50 +22,34 @@ header {
   background-size: cover;
   background-size: 100vh;
   box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
-  padding: 0 50px;
+  padding: 0 50px 0 50px;
   transition: 0.6s;
 }
 
-header .logo {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  font-size: 4vh;
-  outline: none;
-  text-decoration: none;
-  font-weight: 800;
-}
-
 header .logo-img {
-  width: 230px;
+  width: 110px;
   height: auto;
-
 }
 
 header .navigation {
   position: static;
   line-height: 75px;
   transition: 0.6s;
-  transition-property: line-height;
 }
 
 header .navigation .menu {
-  position: relative;
   display: flex;
-  justify-content: center;
   list-style: none;
-  user-select: none;
 }
 
 .menu-item a {
   color: #fff;
   text-decoration: none;
   margin: 20px; /* espaçamento entre os itens do menu */
-
   transition: 0.3s;
 }
 
-.menu-item > a:hover { /* EFEITO QUANDO PASSAMOS O MOUSE SOBRE */
+.menu-item > a:hover { /* Efeito ao passar o mouse sobre os itens */
   color: #fff;
   transition: 0.3s;
   font-size: 20px;
@@ -71,10 +58,9 @@ header .navigation .menu {
 
 /* CONTEÚDO PRINCIPAL */
 .principal {
-  height: 140vh;
-  height: 100vh;
+  height: 120vh;
   max-width: 999;
-  background-image: url('../ProjTEste/Imagens/trilha-rio-do-boi.jpeg');
+  background-image: url('../../Imagens/vale-do-pati-morro-do-castelo.jpg'); 
   background-size: cover;
   background-position: center;
   display: flex;
@@ -86,25 +72,46 @@ header .navigation .menu {
   background-repeat:no-repeat;
 }
 
-.principal h1 {
+.principal h1 { /*Texto no meio da imagem da index*/
   font-size: 4em;
   background: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
 }
 
-.section {
+.section { /*Texto abaixo da imagem da index*/
   text-align: center;
+  height: 70vh;
 }
 
-.section h2 {
+.section h2 { /*Bem vindo à...*/
   font-size: 2.5em;
   color: #546742;
 }
 
-.section p {
+.section p { /*Descubra trilhas...*/
   max-width: 800px;
-  margin: 20px auto;
+  /* margin: 20px auto; */
   font-size: 1.2em;
-  color: #555;
+
 }
+
+.teste {
+  color: red;
+  margin-top: 200px;
+}
+
+.footer {
+  background-color: #546742;
+  height: 200px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.footer .container h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  justify-content: center;
+  text-align: center;
+}
+ /* #F0E4D0 */
