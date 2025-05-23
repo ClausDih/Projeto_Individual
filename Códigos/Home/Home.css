@@ -5,6 +5,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  
 }
 
 *{ /* POSICIONAMENTO DOS LINKS PARA NAVEGAÇÃO DA NAVBAR */
@@ -60,7 +61,7 @@ header .navigation .menu {
 .principal {
   height: 120vh;
   max-width: 999;
-  background-image: url('../../Imagens/vale-do-pati-morro-do-castelo.jpg'); 
+  background-image: url('../../Imagens/vale-do-pati-morro-do-castelo_cp.jpg'); 
   background-size: cover;
   background-position: center;
   display: flex;
@@ -81,37 +82,45 @@ header .navigation .menu {
 
 .section { /*Texto abaixo da imagem da index*/
   text-align: center;
-  height: 70vh;
+  height: 100vh;
+  width: 100%; /* Largura da box */
+  height: 600px; /* Altura da box */
+  border: 0px; /* Borda da box */
+  padding: 20px; /* Espaçamento interno da box */
+  margin: 0px; /* Espaçamento externo da box */
+  background-color: #F0E4D0; /* Cor de fundo da box */
+  color: #546742;
 }
 
-.section h2 { /*Bem vindo à...*/
+.section h2 {
   font-size: 2.5em;
   color: #546742;
 }
 
-.section p { /*Descubra trilhas...*/
-  max-width: 800px;
-  /* margin: 20px auto; */
-  font-size: 1.2em;
-
+.section h3 { 
+  font-size: 1.5em;
+  color: #546742;
 }
 
-.teste {
-  color: red;
-  margin-top: 200px;
+.texto_home {
+  max-width: 1000px;
+  margin: 20px auto;
+  font-size: 1.2em;
+  color: #546742;
+  height: 100vh;
+  word-break: keep-all;
+  text-overflow: inherit;
 }
 
 .footer {
+  bottom: 0; 
+  padding: 10px;
   background-color: #546742;
   height: 200px;
   color: #fff;
   font-size: 15px;
-}
-
-.footer .container h4 {
-  margin-top: 0;
-  margin-bottom: 0;
   justify-content: center;
   text-align: center;
 }
+
  /* #F0E4D0 */
