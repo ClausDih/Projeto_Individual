@@ -5,7 +5,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  
 }
 
 *{ /* POSICIONAMENTO DOS LINKS PARA NAVEGAÇÃO DA NAVBAR */
@@ -51,11 +50,15 @@ header .navigation .menu {
 }
 
 .menu-item > a:hover { /* Efeito ao passar o mouse sobre os itens */
-  color: #fff;
+  color: #b5e68b;
   transition: 0.3s;
   font-size: 20px;
 }
 
+.menu-item.ativo a {
+  color: #b5e68b;
+  font-weight: bolder;
+}
 
 /* CONTEÚDO PRINCIPAL */
 .principal {
@@ -84,7 +87,6 @@ header .navigation .menu {
   text-align: center;
   height: 100vh;
   width: 100%; /* Largura da box */
-  height: 600px; /* Altura da box */
   border: 0px; /* Borda da box */
   padding: 20px; /* Espaçamento interno da box */
   margin: 0px; /* Espaçamento externo da box */
@@ -103,7 +105,8 @@ header .navigation .menu {
 }
 
 .texto_home {
-  max-width: 1000px;
+  max-width: 80%;
+  text-align: center;
   margin: 20px auto;
   font-size: 1.2em;
   color: #546742;
@@ -112,15 +115,20 @@ header .navigation .menu {
   text-overflow: inherit;
 }
 
+.texto_home p {
+  font-size: 20px;
+}
+
 .footer {
   bottom: 0; 
-  padding: 10px;
+  padding: 5px;
   background-color: #546742;
   height: 200px;
   color: #fff;
   font-size: 15px;
   justify-content: center;
-  text-align: center;
+  width: 100%;
+  display: flex;
 }
 
  /* #F0E4D0 */
