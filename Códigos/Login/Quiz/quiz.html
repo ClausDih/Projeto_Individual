@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz do Trilheiro</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+
+<body onload="onloadEsconder()">
+    <div id="pontuacaoEJogo">
+        <h2>Teste: Nível de Experiência em Trilhas</h2><br><br>
+        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR TESTE</button>
+        
+        
+        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+            
+            <div id="infoQuestao" class="padding-8">
+                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                    questões.</span>
+            </div>
+
+            <div id="perguntaDaQuestaoAtual" class="padding-8">
+                <span id="spanQuestaoExibida" class="text-bold"></span>
+            </div>
+
+            <div id="infoAlternativas" class="padding-8">
+                <span><em>Escolha uma opção dentre as abaixo:</em></span>
+            </div>
+            
+            <div id="opcoes" class="flex-colunar padding-7">
+                <span>
+                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                </span>
+                <span>
+                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                </span>
+                <span>
+                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                </span>
+                <span>
+                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                </span>
+            </div>
+
+            <div id="botoes" class="flex-colunar padding-8">
+                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+            </div>
+
+        </div>
+    </div>
+    <br><br>
+    <div id="pontuacao" class="flex-colunar6 width-fit-content6 border-primary6">
+        <div id="pontuacaoDuranteJogo" class="flex-colunar padding-6">
+            <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+            <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+        </div>
+        <div id="pontuacaoFinalJogo" class="flex-colunar padding-6">
+            <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                <span id="spanPontuacaoFinal">***</span>
+            </span>
+            <span id="msgFinal" class="width-fit-content">***</span>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const listaDeQuestoes = [
+        
+        {
+            pergunta: "Quantas trilhas você realizou nos últimos 12 meses?",
+            alternativaA: "Nenhuma", // 0 pts
+            alternativaB: "1 a 2", // 1 pt
+            alternativaC: "3 a 5", // 2 pts
+            alternativaD: "Mais de 5", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Você já realizou trilhas com pernoite (acampamento ou bivac)?",
+            alternativaA: "Nunca", // 0 pts
+            alternativaB: "Uma ou duas vezes", // 1 pt
+            alternativaC: "Algumas vezes", // 2 pts
+            alternativaD: "Frequentemente", // 3 pts
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Você já enfrentou mudanças climáticas inesperadas durante uma trilha?",
+            alternativaA: "Não", // 0 pts
+            alternativaB: "Sim, com ajuda de alguém", // 1 pt
+            alternativaC: "Sim, e soube lidar razoavelmente bem", // 2 pts
+            alternativaD: "Sim, com autonomia e preparo", // 3 pts
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Você já fez trilhas de longa duração (mais de 15 km ou mais de 6h)?",
+            alternativaA: "Não", // 0 pts
+            alternativaB: "1 ou 2 vezes", // 1 pt
+            alternativaC: "Algumas vezes", // 2 pts
+            alternativaD: "Com frequência", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Você já atuou como guia ou responsável por um grupo durante uma trilha?",
+            alternativaA: "Nunca", // 0 pts
+            alternativaB: "Já ajudei alguém mais experiente", // 1 pt
+            alternativaC: "Já organizei trilhas com amigos ", // 2 pts
+            alternativaD: "Já fui guia responsável", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Você sabe como agir em caso de torção ou fratura em trilha?",
+            alternativaA: "Não", // 0 pts
+            alternativaB: "Tenho uma ideia básica", // 1 pt
+            alternativaC: "Já aprendi com vídeos/artigos", // 2 pts
+            alternativaD: "Tenho treinamento de primeiros socorros", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Você leva kit de primeiros socorros nas trilhas?",
+            alternativaA: "Nunca", // 0 pts
+            alternativaB: "Às vezes", // 1 pt
+            alternativaC: "Levo o básico", // 2 pts
+            alternativaD: "Levo kit completo e atualizado", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Você utiliza ou sabe utilizar bússola, GPS ou aplicativo de navegação?",
+            alternativaA: "Não sei usar", // 0 pts
+            alternativaB: "Sei usar aplicativo básico", // 1 pt
+            alternativaC: "Uso aplicativos e sei leitura básica de mapa", // 2 pts
+            alternativaD: "Sei navegação avançada (bússola, topografia)", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Você sabe como evitar desidratação e hipoglicemia durante uma trilha?",
+            alternativaA: "Não", // 0 pts
+            alternativaB: "Tenho noção, mas nunca pus em prática", // 1 pt
+            alternativaC: "Me preparo razoavelmente", // 2 pts
+            alternativaD: "Tenho planejamento nutricional e de hidratação", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Com que frequência você pratica atividades físicas (caminhadas, corrida, academia)?",
+            alternativaA: "Raramente", // 0 pts
+            alternativaB: "1 vez por semana", // 1 pt
+            alternativaC: "2 a 3 vezes por semana", // 2 pts
+            alternativaD: "4 vezes ou mais por semana", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Como você lida com situações de estresse e cansaço em trilhas?",
+            alternativaA: "Fico ansioso(a) e tenho dificuldade", // 0 pts
+            alternativaB: "Às vezes perco o foco", // 1 pt
+            alternativaC: "Consigo me acalmar e seguir", // 2 pts
+            alternativaD: "Tenho bom controle emocional", // 3 pts
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Você já passou por situações de risco real (queda, animal peçonhento, desorientação)? Como reagiu?",
+            alternativaA: "Nunca passei", // 0 pts
+            alternativaB: "Já passei, mas entrei em pânico", // 1 pt
+            alternativaC: "Reagi com ajuda de outros", // 2 pts
+            alternativaD: "Reagi com calma e autonomia", // 3 pts
+            alternativaCorreta: "alternativaC"
+        }
+
+        /*
+        ## *Classificação por Pontuação Final:*
+
+        *0 a 15 pontos* – *Trilheiro Iniciante*
+        Pouca experiência ou preparo. Recomendamos começar com trilhas leves, sempre acompanhado. Aprender noções básicas de segurança.
+
+        *16 a 26 pontos* – *Trilheiro Mediano*
+        Já tem certa vivência e noções de segurança. Pode participar de trilhas moderadas, ainda com supervisão em percursos mais técnicos.
+
+        *27 a 36 pontos* – *Trilheiro Experiente*
+        Alto grau de autonomia, preparo técnico e físico. Pode liderar grupos, planejar trilhas longas ou autossuficientes.
+        */
+
+    ]
+
+    // variáveis globais    
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let tentativaIncorreta = 0
+    let certas = 0
+    let erradas = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
+    function onloadEsconder() {
+        document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('jogo').style.display = "none"
+    }
+
+    function iniciarQuiz() {
+        document.getElementById('pontuacao').style.display = "flex"
+        document.getElementById('jogo').style.display = "flex"
+        document.getElementById('btnIniciarQuiz').style.display = "none"
+
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+
+        preencherHTMLcomQuestaoAtual(0)
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = true
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
+        console.log("questaoAtual")
+        console.log(questaoAtual)
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+            checarResposta()
+        }
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+        
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
+
+    }
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+        
+        desmarcarRadioButtons()
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            alert("Atenção... a próxima é a ultima questão!")
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else {
+            finalizarJogo()
+        }
+        limparCoresBackgroundOpcoes()
+    }
+
+    function tentarNovamente() {
+        // atualiza a página
+        window.location.reload()
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let alternativaCorreta = null // variável para armazenar a alternativa correta
+
+        options.forEach((option) => {
+            if (option.value === respostaQuestaoAtual) {
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+                alternativaCorreta = option.labels[0].id
+            }
+        })
+
+        // verifica se resposta assinalada é correta
+        options.forEach((option) => {
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                pontuacaoFinal++
+                certas++
+                document.getElementById("spanCertas").innerHTML = certas
+                numeroDaQuestaoAtual++
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id
+
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                tentativaIncorreta++
+                erradas++
+                document.getElementById("spanErradas").innerHTML = erradas
+                numeroDaQuestaoAtual++
+            }
+        })
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option");
+        options.forEach((option) => {
+            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+    
+    function finalizarJogo() {
+        let textoParaMensagemFinal = null
+        let classComCoresParaMensagemFinal = null
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+
+        if (porcentagemFinalDeAcertos <= 0.3) {
+            textoParaMensagemFinal = "Parece que você não estudou..."
+            classComCoresParaMensagemFinal = "text-danger-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
+            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
+            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.9) {
+            textoParaMensagemFinal = "Uau, parabéns!"
+            classComCoresParaMensagemFinal = "text-success-with-bg"
+        }
+
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+
+
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+
+        document.getElementById('jogo').classList.add("text-new-gray") 
+
+        btnProx.disabled = true
+        btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = false
+
+    }
+</script>
