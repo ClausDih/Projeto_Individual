@@ -19,7 +19,7 @@ body {
     color: var(--new-white);
     background-color: #3B4C36; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-top: 8px;
+    margin-top: -20px;
     padding: 0;
     background-image: linear-gradient(to bottom, #3B4C36 0%, #2D3B28 100%);
     text-align: center;
