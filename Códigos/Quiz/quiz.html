@@ -9,7 +9,6 @@
 </head>
 
 
-
 <body onload="onloadEsconder()">
 
     <div id="pontuacaoEJogo">
@@ -54,25 +53,22 @@
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                <button onclick="mostrarResultado()" id="btnMostrarResultado" style="display:none">Mostrar Resultado</button>
             </div>
 
         </div>
     </div>
     <br><br>
+<div id="centralizador" class="centralizador" style="display: none;">
     <div id="pontuacao" class="flex-colunar6 width-fit-content6 border-primary6">
-        <div id="pontuacaoDuranteJogo" class="flex-colunar padding-6">
-            <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-            <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-        </div>
         <div id="pontuacaoFinalJogo" class="flex-colunar padding-6">
             <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
                 <span id="spanPontuacaoFinal">***</span>
             </span>
-            <span id="msgFinal" class="width-fit-content">***</span>
+            <span id="msgFinal" class="width-fit-content6" class="centralizador">***</span>
         </div>
     </div>
+</div>
 </body>
 
 </html>
@@ -85,7 +81,6 @@
             alternativaB: "1 a 2", // 1 pt
             alternativaC: "3 a 5", // 2 pts
             alternativaD: "Mais de 5", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -94,7 +89,6 @@
             alternativaB: "Uma ou duas vezes", // 1 pt
             alternativaC: "Algumas vezes", // 2 pts
             alternativaD: "Frequentemente", // 3 pts
-            alternativaCorreta: "alternativaD"
         },
 
         {
@@ -103,7 +97,6 @@
             alternativaB: "Sim, com ajuda de alguém", // 1 pt
             alternativaC: "Sim, e soube lidar razoavelmente bem", // 2 pts
             alternativaD: "Sim, com autonomia e preparo", // 3 pts
-            alternativaCorreta: "alternativaD"
         },
 
         {
@@ -112,7 +105,6 @@
             alternativaB: "1 ou 2 vezes", // 1 pt
             alternativaC: "Algumas vezes", // 2 pts
             alternativaD: "Com frequência", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -121,7 +113,6 @@
             alternativaB: "Já ajudei alguém mais experiente", // 1 pt
             alternativaC: "Já organizei trilhas com amigos ", // 2 pts
             alternativaD: "Já fui guia responsável", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -130,7 +121,6 @@
             alternativaB: "Tenho uma ideia básica", // 1 pt
             alternativaC: "Já aprendi com vídeos/artigos", // 2 pts
             alternativaD: "Tenho treinamento de primeiros socorros", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -139,7 +129,6 @@
             alternativaB: "Às vezes", // 1 pt
             alternativaC: "Levo o básico", // 2 pts
             alternativaD: "Levo kit completo e atualizado", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -148,7 +137,6 @@
             alternativaB: "Sei usar aplicativo básico", // 1 pt
             alternativaC: "Uso aplicativos e sei leitura básica de mapa", // 2 pts
             alternativaD: "Sei navegação avançada (bússola, topografia)", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -157,7 +145,6 @@
             alternativaB: "Tenho noção, mas nunca pus em prática", // 1 pt
             alternativaC: "Me preparo razoavelmente", // 2 pts
             alternativaD: "Tenho planejamento nutricional e de hidratação", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -166,7 +153,6 @@
             alternativaB: "1 vez por semana", // 1 pt
             alternativaC: "2 a 3 vezes por semana", // 2 pts
             alternativaD: "4 vezes ou mais por semana", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -175,7 +161,6 @@
             alternativaB: "Às vezes perco o foco", // 1 pt
             alternativaC: "Consigo me acalmar e seguir", // 2 pts
             alternativaD: "Tenho bom controle emocional", // 3 pts
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -184,7 +169,6 @@
             alternativaB: "Já passei, mas entrei em pânico", // 1 pt
             alternativaC: "Reagi com ajuda de outros", // 2 pts
             alternativaD: "Reagi com calma e autonomia", // 3 pts
-            alternativaCorreta: "alternativaC"
         }
 
         /*
@@ -228,7 +212,7 @@
         btnSubmeter.disabled = false
         btnProx.disabled = true
         // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = true
+        // btnTentarNovamente.disabled = true
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -295,46 +279,32 @@
         limparCoresBackgroundOpcoes()
     }
 
-    function tentarNovamente() {
-        // atualiza a página
-        window.location.reload()
-    }
+    // function tentarNovamente() {
+    //     // atualiza a página
+    //     window.location.reload()
+    // }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
-
-        const options = document.getElementsByName("option"); // recupera alternativas no html
-
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
+        const options = document.getElementsByName("option");
 
         options.forEach((option) => {
-            if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-                alternativaCorreta = option.labels[0].id
-            }
-        })
+        if (option.checked) {
+            const valor = option.value;
+            let pontos = 0;
+            if (valor === "alternativaB") pontos = 1;
+            else if (valor === "alternativaC") pontos = 2;
+            else if (valor === "alternativaD") pontos = 3;
 
-        // verifica se resposta assinalada é correta
-        options.forEach((option) => {
-            if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal++
-                certas++
-                document.getElementById("spanCertas").innerHTML = certas
-                numeroDaQuestaoAtual++
-            } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
+            pontuacaoFinal += pontos;
+        }
+    });
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                tentativaIncorreta++
-                erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
-                numeroDaQuestaoAtual++
-            }
-        })
+    numeroDaQuestaoAtual++;
+    if (numeroDaQuestaoAtual === quantidadeDeQuestoes) {
+        btnProx.style.display = "none";
+        document.getElementById('btnMostrarResultado').style.display = "inline-block";
     }
+}
 
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
@@ -350,38 +320,27 @@
             options[i].checked = false;
         }
     }
+
+    function mostrarResultado() {
+    let mensagem = "";
+
     
-    function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
-
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
-
-
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-        document.getElementById('jogo').classList.add("text-new-gray") 
-
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = false
-
+    if (pontuacaoFinal <= 15) { centralizador.style.display = 'flex';
+        mensagem = "Trilheiro Iniciante - Pouca experiência ou preparo. Recomendamos começar com trilhas leves, sempre acompanhado. Aprender noções básicas de segurança.";
+    } else if (pontuacaoFinal <= 26) {centralizador.style.display = 'flex';
+        mensagem = "Trilheiro Mediano - Já tem certa vivência e noções de segurança. Pode participar de trilhas moderadas, ainda com supervisão em percursos mais técnicos.";
+    } else {centralizador.style.display = 'flex';
+        mensagem = "Trilheiro Experiente - Alto grau de autonomia, preparo técnico e físico. Pode liderar grupos, planejar trilhas longas ou autossuficientes.";
     }
+
+    
+    document.getElementById("spanPontuacaoFinal").innerText = pontuacaoFinal;
+    document.getElementById("msgFinal").innerText = mensagem;
+
+    document.getElementById("btnMostrarResultado").disabled = true;
+}
+    
+
+    
 </script>
