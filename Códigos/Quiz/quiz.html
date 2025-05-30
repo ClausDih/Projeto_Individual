@@ -193,6 +193,8 @@
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
+
+    
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
@@ -235,6 +237,7 @@
         let hasChecked = false
         for (let i = 0; i < options.length; i++) {
             if (options[i].checked) {
+                
                 hasChecked = true
                 break
             }
