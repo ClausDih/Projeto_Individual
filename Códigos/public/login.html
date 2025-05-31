@@ -1,0 +1,121 @@
+  <!DOCTYPE html>
+  <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vibe de Trilha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/Login.css">
+  </head>
+  <body>
+
+    <header>
+      <img src="./pictures/Logo/30ebf307-01dc-47b4-9677-b223c2a2fbf9.png" alt="Vibe de Trilha" class="logo-img">
+        <a href="#" class="logo"> </a>
+      <nav class="navigation">
+        <ul class="menu">
+          <li class="menu-item"><a href="index.html">Home</a></li>
+          <li class="menu-item"><a href="Trajetoria.html">Trajetória</a></li>
+          <li class="menu-item"><a href="cadastro.html">Cadastro</a></li>
+          <li class="menu-item ativo"><a href="">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="principal">
+        <div class="box">
+            <h5>Login</h5>
+
+            <label for="email">E-mail</label>
+            <input type="text" id="email_input" required>
+
+            <label for="password">Senha</label>
+            <input type="password" id="senha_input" required>
+
+            <button onclick="entrar()">Entrar</button>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div type="footer" class="container">
+        <h4>Feito com muito esforço e dedicação por aluno SPTech © 2025</h4>
+      </div>
+    </footer>
+  </body>
+  </html>
+
+  <script src="js/sessao.js"></script>
+
+
+  <script>
+     function entrar() {
+        //aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        /*
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }*/
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+                console.log('Estou aqui, passou')
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    //sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "index_logado.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    //finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+    /*
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }*/
+  </script>

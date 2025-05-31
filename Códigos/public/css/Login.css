@@ -1,0 +1,148 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  color: #ddd;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*{ /* POSICIONAMENTO DOS LINKS PARA NAVEGAÇÃO DA NAVBAR */
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #23252b9d;
+  background-size: cover;
+  background-size: 100vh;
+  box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+  padding: 0 50px 0 50px;
+  transition: 0.6s;
+}
+
+header .logo-img {
+  width: 110px;
+  height: auto;
+}
+
+header .navigation {
+  position: static;
+  line-height: 75px;
+  transition: 0.6s;
+}
+
+header .navigation .menu {
+  display: flex;
+  list-style: none;
+}
+
+.menu-item a {
+  color: #fff;
+  text-decoration: none;
+  margin: 20px; /* espaçamento entre os itens do menu */
+  transition: 0.3s;
+}
+
+.menu-item > a:hover { /* Efeito ao passar o mouse sobre os itens */
+  color: #b5e68b;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+.menu-item.ativo a {
+  color: #b5e68b;
+  font-weight: bolder;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.principal {
+  height:100vh;
+  width: 100%;
+  background-image: url('../pictures/Fundo1\ \(1\).jpeg'); 
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #1C4423;
+  margin: 0;
+  background-repeat:no-repeat;
+}
+
+.principal .box { 
+  font-size: 40px;
+  background: rgba(240, 228, 207, 0.5);
+  padding: 36px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 36%;
+  margin-bottom: -35px;
+}
+
+.box label {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.box p{
+  font-size: 16px;
+  font-weight: bold;
+  text-align: right;
+  text-decoration: underline;
+}
+
+.box input {
+  border-radius: 8px;
+  padding: 6px;
+  border: none;
+}
+
+#email {
+  margin-bottom: 24px;  
+}
+
+#password {
+  margin-bottom: 24px;
+}
+
+.box button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px ;
+  width: max-content;
+  align-self: center;
+  margin-bottom: 16px;
+  cursor: pointer;
+  color: #F0E4D0;
+  background-color:  #1C4423;
+}
+
+.box h5 {
+  margin: 16px;
+  margin-bottom: 36px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 8vh;
+  width: 100%;
+  background-color: #546742;
+  color: #fff;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ /* #F0E4D0 */
