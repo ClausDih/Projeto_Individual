@@ -16,10 +16,9 @@
 }
 
 
-
-
-
-
+*{ /* POSICIONAMENTO DOS LINKS PARA NAVEGAÇÃO DA NAVBAR */
+  box-sizing: border-box;
+}
 
 /* NAVBAR */
 header {
@@ -28,12 +27,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #3654439d;
+  background: #23252b9d;
   background-size: cover;
   background-size: 100vh;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-  padding: 0 120px 0 50px;
+  box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+  padding: 0 50px 0 50px;
   transition: 0.6s;
+  top: 0;
+  left: 0;
+  z-index: 999;
 }
 
 header .logo-img {
@@ -46,6 +48,7 @@ header .navigation {
   line-height: 75px;
   transition: 0.6s;
 }
+
 
 header .navigation .menu {
   display: flex;
@@ -60,22 +63,21 @@ header .navigation .menu {
 }
 
 .menu-item > a:hover { /* Efeito ao passar o mouse sobre os itens */
-  color: #b5e68b;
+  color: #e4c439;
   transition: 0.3s;
   font-size: 20px;
 }
 
 .menu-item.ativo a {
-  color: #b5e68b;
+  color: #e4c439;
   font-weight: bolder;
 }
 
-
-
-
-
-
-
+.tituloQuiz {
+    margin-top: 130px;
+    color: var(--primary-brand-color);
+    background-color: var(--new-white);
+}
 
 body {
     font-family: 'Quicksand', sans-serif;
@@ -84,6 +86,8 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-image: url('../pictures/hiking-silhouette-reflection-1m7nhwkt9e5nqhbp.jpg');
+    background-size: cover;
 }
 
 body h2 {
@@ -112,7 +116,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     font-size: 16px;
-    background: rgba(243, 235, 217, 0.6); 
+    background: rgba(243, 235, 217, 2.0); 
     padding: 24px;
     border-radius: 12px;
     gap: 15px;
@@ -158,6 +162,7 @@ button:hover {
     margin: 0;
     border: 2px solid var(--secondary-brand-color);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
 }
 
 .width-fit-content6 {
@@ -227,4 +232,13 @@ button:hover {
     align-items: center;
 }
 
+#pontuacaoEJogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#btnIniciarQuiz {
+    width: max-content;
+}
 

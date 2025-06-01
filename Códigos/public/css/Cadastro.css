@@ -56,13 +56,13 @@ header .navigation .menu {
 }
 
 .menu-item > a:hover { /* Efeito ao passar o mouse sobre os itens */
-  color: #b5e68b;
+  color: #e4c439;
   transition: 0.3s;
   font-size: 20px;
 }
 
 .menu-item.ativo a {
-  color: #b5e68b;
+  color: #e4c439;
   font-weight: bolder;
 }
 

@@ -50,13 +50,13 @@ header .navigation .menu {
 }
 
 .menu-item > a:hover { /* Efeito ao passar o mouse sobre os itens */
-  color: #b5e68b;
+  color: #e4c439;
   transition: 0.3s;
   font-size: 20px;
 }
 
 .menu-item.ativo a {
-  color: #b5e68b;
+  color: #e4c439;
   font-weight: bolder;
 }
 
@@ -64,7 +64,7 @@ header .navigation .menu {
 .principal {
   height: 120vh;
   max-width: 999;
-  background-image: url('../pictures/vale-do-pati-morro-do-castelo_cp.jpg'); 
+  background-image: url('../pictures/vale-do-pati-morro-do-castelo_cp2.jpg'); 
   background-size: cover;
   background-position: center;
   display: flex;
@@ -110,7 +110,7 @@ header .navigation .menu {
   margin: 20px auto;
   font-size: 1.2em;
   color: #546742;
-  height: 100vh;
+  /* height: 100vh; */
   word-break: keep-all;
   text-overflow: inherit;
 }
@@ -120,15 +120,16 @@ header .navigation .menu {
 }
 
 .footer {
-  bottom: 0; 
-  padding: 5px;
-  background-color: #546742;
-  height: 200px;
-  color: #fff;
-  font-size: 15px;
-  justify-content: center;
+  /* position: fixed; */
+  bottom: 0;
+  height: 8vh;
   width: 100%;
+  background-color: #546742;
+  color: #fff;
+  font-size: 11px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

@@ -9,6 +9,7 @@ CREATE TABLE Usuario (
 	senha CHAR(8) NOT NULL
 );
 
+
 CREATE TABLE Quiz (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	titulo VARCHAR(200) NOT NULL
@@ -19,7 +20,7 @@ CREATE TABLE Resultado (
 	fk_usuario INT,
 	fk_quiz INT,
 	fk_Trilhas INT,
-	dataJogo DATE NOT NULL,
+	dataJogo DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	pontos TINYINT NOT NULL,
 	nivel VARCHAR(14) NOT NULL,
     Primary key (id, fk_usuario, fk_quiz, fk_Trilhas)
@@ -72,6 +73,9 @@ INSERT INTO Trilhas VALUES
 	(default, 'Trilha do Vale do Rio Mogi', 'Percorre o coração da Mata Atlântica, seguindo o curso do Rio Mogi', 'Paranapiacaba', 'dificil', 34),
     (default, 'Trilha do Pico dos Marins', 'Trilha técnica e íngreme até o pico com 2.420 m de altitude; recomendada para trilheiros experientes', 'Piquete ', 'dificil', 35),
     (default, 'Travessia Lapinha x Tabuleiro', 'Trilha de longo curso na Serra do Espinhaço, com subidas íngremes, travessias de rios e vista para o maior conjunto de cachoeiras de MG', 'Conceição do Mato Dentro', 'dificil', 36);
-    
 
+TRUNCATE TABLE Usuario;
     
+SELECT * FROM Usuario;
+SELECT * FROM Quiz;
+SELECT * FROM Resultado;

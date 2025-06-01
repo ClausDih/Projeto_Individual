@@ -9,35 +9,34 @@
     <link rel="stylesheet" href="./css/quiz.css">
 </head>
 
-<body2>
-
-    <div id="topo"></div>
-
-    <header>
-      <img src="./pictures/Logo/30ebf307-01dc-47b4-9677-b223c2a2fbf9.png" alt="Vibe de Trilha" class="logo-img">
-        <a href="#" class="logo"> </a>
-      <nav class="navbar-lateral">
-        <ul class="menu">
-          <li class="menu-item"><a href="login.html">Home</a></li>
-          <li class="menu-item"><a href="Trajetoria.html">Trajetória</a></li>
-          <li class="menu-item"><a href="quiz.html">Quiz</a></li>
-          <li class="menu-item"><a href="#">Meu Desempenho</a></li>
-          <!-- <li class="menu-item"><a href="#">Sair</a></li> -->
-        </ul>
-      </nav>
-    </header>
-
-</body2>
 
 
 <body onload="onloadEsconder()">
+    
+    <nav>
 
+        <header>
+        <img src="./pictures/Logo/30ebf307-01dc-47b4-9677-b223c2a2fbf9.png" alt="Vibe de Trilha" class="logo-img">
+        <a href="#" class="logo"> </a>
+          <nav class="navigation">
+            <ul class="menu">
+              <li class="menu-item"><a href="index_logado.html">Home</a></li>
+              <li class="menu-item"><a href="Trajetoria_logado.html">Trajetória</a></li>
+              <li class="menu-item ativo"><a href="#">Quiz</a></li>
+              <li class="menu-item"><a href="dashboard.html">Meu Desempenho</a></li>
+              <li class="menu-item"><a href="login.html">Sair</a></li>
+            </ul>
+          </nav>
+        </header>
+    
+    </nav>
+    
     <div id="pontuacaoEJogo">
-        <h2>Teste: Nível de Experiência em Trilhas</h2><br><br>
+        <h2 class="tituloQuiz">Teste: Nível de Experiência em Trilhas</h2><br><br>
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR TESTE</button>
         
         
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+        <div id="jogo" style="display: none;" class="width-fit-content flex-colunar border-secondary">
             
             <div id="infoQuestao" class="padding-9">
                 <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
@@ -93,6 +92,15 @@
 </body>
 
 </html>
+
+<script src="sessao.js"></script>
+<script>
+  window.onload = function () {
+      validarSessao(); // redireciona se o usuário não estiver logado
+      onloadEsconder();
+  };
+</script>
+
 <script>
     const listaDeQuestoes = [
         
@@ -363,6 +371,32 @@
     document.getElementById("msgFinal").innerText = mensagem;
 
     document.getElementById("btnMostrarResultado").disabled = true;
+
+    const titulo = "Teste: Nível de Experiência em Trilhas";
+const fk_Trilhas = 1; // Coloque o ID correto da trilha (pode ser fixo ou dinâmico)
+const nivel = pontuacaoFinal <= 15 ? "Iniciante" : pontuacaoFinal <= 26 ? "Mediano" : "Experiente";
+
+const idUsuario = sessionStorage.ID_USUARIO; // Garanta que foi salvo após login
+
+fetch("/quiz/quizTrilha", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        titulo: titulo,
+        fk_Usuario: idUsuario,
+        fk_Trilhas: fk_Trilhas,
+        pontos: pontuacaoFinal,
+        nivel: nivel
+    })
+}).then(res => {
+    if (res.ok) {
+        console.log("Resultado enviado com sucesso.");
+    } else {
+        console.error("Erro ao enviar resultado.");
+    }
+});
 }
     
 

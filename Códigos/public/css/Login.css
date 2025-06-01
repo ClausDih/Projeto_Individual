@@ -50,13 +50,13 @@ header .navigation .menu {
 }
 
 .menu-item > a:hover { /* Efeito ao passar o mouse sobre os itens */
-  color: #b5e68b;
+  color: #e4c439;
   transition: 0.3s;
   font-size: 20px;
 }
 
 .menu-item.ativo a {
-  color: #b5e68b;
+  color: #e4c439;
   font-weight: bolder;
 }
 
@@ -64,7 +64,7 @@ header .navigation .menu {
 .principal {
   height:100vh;
   width: 100%;
-  background-image: url('../pictures/Fundo1\ \(1\).jpeg'); 
+  background-image: url('../pictures/Fundo1\ \(1\).jpeg');
   background-size: cover;
   background-position: center;
   display: flex;

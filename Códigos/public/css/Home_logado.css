@@ -18,11 +18,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #3654439d;
+  background: #23252b9d;
   background-size: cover;
   background-size: 100vh;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-  padding: 0 120px 0 50px;
+  box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+  padding: 0 50px 0 50px;
   transition: 0.6s;
 }
 
@@ -42,6 +42,11 @@ header .navigation .menu {
   list-style: none;
 }
 
+/* p {
+  color: white;
+  font-size: 24px;
+} */
+
 .menu-item a {
   color: #fff;
   text-decoration: none;
@@ -50,21 +55,23 @@ header .navigation .menu {
 }
 
 .menu-item > a:hover { /* Efeito ao passar o mouse sobre os itens */
-  color: #b5e68b;
+  color: #e4c439;
   transition: 0.3s;
   font-size: 20px;
 }
 
 .menu-item.ativo a {
-  color: #b5e68b;
+  color: #e4c439;
   font-weight: bolder;
 }
 
 /* CONTEÚDO PRINCIPAL */
 .principal {
   height: 120vh;
-  max-width: 100%;
-  background-color: var(--new);
+  max-width: 999;
+  background-image: url('../pictures/vale-do-pati-morro-do-castelo_cp2.jpg'); 
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,7 +115,7 @@ header .navigation .menu {
   margin: 20px auto;
   font-size: 1.2em;
   color: #546742;
-  height: 100vh;
+  /* height: 100vh; */
   word-break: keep-all;
   text-overflow: inherit;
 }
@@ -118,7 +125,7 @@ header .navigation .menu {
 }
 
 .footer {
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   height: 8vh;
   width: 100%;
@@ -129,7 +136,6 @@ header .navigation .menu {
   justify-content: center;
   align-items: center;
 }
-
 
 
  /* #F0E4D0 */
