@@ -1,0 +1,185 @@
+:root {
+    --preto: #23252b9d;
+    --verde-escuro: #1C4423;
+    --bege: #F0E4D0;
+    --verde-exercito: #546742;
+}
+
+
+body {
+    margin: 0;
+}
+
+.graficos {
+    width: 400px;
+}
+
+.janela {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.container-esquerdo {
+    width: 20%;
+    background-color: var(--bege);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.div_imagem {
+    width: 100%;
+    background-color: var(--bege);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.imagem_logo {
+    width: 150px;
+}
+
+h1{
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--verde-escuro);
+}
+
+.botao_sair{
+    width: 130px;
+    height: 60px;
+    background: none;
+    border: 2px solid var(--verde-escuro);
+    color: var(--verde-escuro);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    transition: 0.8s;
+}
+
+.botao_sair:hover{
+    background: var(--verde-exercito);
+    border: 2px solid var(--verde-escuro);
+    color: white;
+    transform: scale(1.1);
+
+}
+
+
+/* ----------------------------- lado direito *------------------------------ */
+
+
+.container-direito {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    position: relative;
+    top: 0;
+    height: 100vh;
+    overflow: auto;
+    background-color: var(--verde-escuro);
+
+}
+
+.tituloSugestao{
+    color: white;
+    text-align: center;
+
+    
+}
+
+.cima{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 30%;
+    width: 100%;
+    align-items: center;
+}
+
+.div_kpi{
+    width: 250px;
+    height: 100px;
+    background-color: var(--verde-exercito);
+    border-radius: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--bege);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloKPI{
+    margin-bottom: 2%;
+}
+
+.lados{
+    display: flex;
+    flex-direction: row;
+    height: 70%;
+    width: 100%;
+}
+.lado1{
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.lado2{
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.container-bot{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+/* -------------------------- graficos =------------------------------1 */
+
+.chart1{
+    background-color: #546742;
+    border-radius: 15px;
+    margin: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+
+}
+
+.chart2{
+    background-color: #546742;
+    border-radius: 15px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    width: 250px;
+    height: 30%;
+    padding: 8px;
+    margin-left: 30px;
+
+}

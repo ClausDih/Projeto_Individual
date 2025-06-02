@@ -66,6 +66,7 @@
 
 <script>
 
+  var lista_usuarios = [];
 
   function cadastrar() {
     //aguardar();
@@ -76,6 +77,9 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+
+    lista_usuarios.push(nomeVar);
 
 
     // Verificando se há algum campo em branco

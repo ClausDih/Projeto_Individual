@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Desempenho</title>
+  <link rel="stylesheet" href="./css/dash_style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body onload="kpi(),obterDados()">
+
+
+  <section class="janela">
+    <div class="container-esquerdo">
+      <div class="div_imagem">
+        <img class="imagem_logo" src="./pictures/Logo/30ebf307-01dc-47b4-9677-b223c2a2fbf9.png" alt="">
+      </div>
+      <h1>Seja bem vindo(a) <span id="NomeUsuario">UserProfile!</span></h1>
+
+      <div class="div_imagem">
+        <button class="botao_sair">Sair</button>
+      </div>
+    </div>
+
+    <div class="container-direito">
+      <div class="cima">
+
+        <div class="div_kpi">
+            <span class="tituloKPI">Pontos do ultimo Quiz:</span>
+            <span id="kpi1">0</span>
+        </div>
+        <div class="div_kpi">
+            <span class="tituloKPI">Nivel atual trilheiro:</span>
+            <span id="kpi2">Facil</span>
+        </div>
+
+        <div class="div_kpi">
+            <span class="tituloKPI">Sugestão de trilha:</span>
+            <span id="kpi3">Trilha</span>
+        </div>
+      </div>
+
+      <div class="container-bot">
+        <div class="lados">
+        <div class="lado1">
+          <canvas class="chart1" id="myChart2"></canvas>
+        </div>
+
+        <div class="lado2">
+          <div class="chart2" id="myChart3">
+            <span class="tituloSugestao" id="tituloSugestao">Sugestão</span>
+            <p class="conteudoSugestao" id="conteudoSugestao">dasdasdasd</p>
+        </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    var nome = document.getElementById('NomeUsuario')
+    nome.innerHTML = sessionStorage.NOME_USUARIO;
+
+    var kp1 = document.getElementById('kpi1');
+    var kp2 = document.getElementById('kpi2');
+    var kp3 = document.getElementById('kpi3');
+
+    var titulo = document.getElementById('tituloSugestao');
+    var conteudo = document.getElementById('conteudoSugestao');
+
+    var usuario = sessionStorage.ID_USUARIO;
+
+    function kpi() {
+    fetch(`/kpi/listar/${usuario}`, { 
+    method: "GET",
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            return resposta.json()
+        } else {
+            throw new Error("Falha ao buscar KPIs: " + resposta.status);
+    }
+}).then(function(dados){
+    
+    console.log('Dados:', dados[0])
+    kp1.innerHTML = dados[0].pontos;
+    kp2.innerHTML = dados[0].nivel;
+    kp3.innerHTML = dados[0].trilha_sugerida;
+
+    tituloSugestao.innerHTML = dados[0].trilha_sugerida;
+    conteudoSugestao.innerHTML = dados[0].descricao;
+
+    
+    
+})
+  }
+
+function obterDados() {
+
+        var usuario = sessionStorage.ID_USUARIO;
+        // Graficos de linha ------------------------------------------------------------------------------------------------------
+        fetch(`/kpi/listarLinha/${usuario}`).then(function (response) {
+            console.log("1 - Dados para linha: /n");
+            console.log(response);
+            // if (!response.ok) {
+            //     throw new Error("Testando se o problem é na resposta: " + response.status);
+            // }
+            return response.json();
+        })
+            .then(function (dataGrafico) {
+                console.log("1.1 - Deu bom, vamos plotar o gráfico de linha! /n");
+                console.log(dataGrafico);
+                plotarGraficoLinha(dataGrafico);
+            })
+            .catch(function (err) {
+
+                console.log("1.2 - Deu ruim no grafico de linha, aqui no fetch /n");
+                console.log(err);
+            })
+    }
+    
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+var pontos = [];
+var horario = [];
+
+
+
+
+function plotarGraficoLinha(dataGrafico) {
+
+    var pontos = [];
+    var horario = [];
+    
+    for (let i = 0; i < dataGrafico.length; i++) {
+        pontos.push(dataGrafico[i].pontos);
+        horario.push(dataGrafico[i].dataJogo)
+        
+    }
+        
+const labels2 = horario;
+
+   const data2 = {
+        labels: labels2,
+        datasets: [{
+            label: 'Pontos',
+            backgroundColor: 'white',
+            borderColor: 'red',
+            borderWidth: 3,
+
+            data: pontos,
+
+        }
+        ]
+    };
+
+    const config2 = { // GRAFICO 1
+        type: 'line',
+        data: data2,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Evolução de Nivel',
+                    color: 'white',
+                    font: {
+                        size: 18
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: 'white' // cor da legenda
+                    }
+                },
+                tooltip: {
+                    bodyColor: 'white',
+                    titleColor: 'white',
+                    backgroundColor: '#333' // fundo da tooltip
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'white' // rótulos do eixo X
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)' // linhas do grid X
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white' // rótulos do eixo Y
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)' // linhas do grid Y
+                    }
+                }
+            }
+        }
+
+    };
+
+
+
+   const myChart2 = new Chart(
+        document.getElementById('myChart2'),
+        config2
+    );
+
+}
+
+</script>
+

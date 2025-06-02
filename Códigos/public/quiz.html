@@ -373,7 +373,7 @@
     document.getElementById("btnMostrarResultado").disabled = true;
 
     const titulo = "Teste: Nível de Experiência em Trilhas";
-const fk_Trilhas = 1; // Coloque o ID correto da trilha (pode ser fixo ou dinâmico)
+const fk_Trilhas = pontuacaoFinal+1; // Coloque o ID correto da trilha (pode ser fixo ou dinâmico)
 const nivel = pontuacaoFinal <= 15 ? "Iniciante" : pontuacaoFinal <= 26 ? "Mediano" : "Experiente";
 
 const idUsuario = sessionStorage.ID_USUARIO; // Garanta que foi salvo após login

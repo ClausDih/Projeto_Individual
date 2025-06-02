@@ -74,8 +74,41 @@ INSERT INTO Trilhas VALUES
     (default, 'Trilha do Pico dos Marins', 'Trilha técnica e íngreme até o pico com 2.420 m de altitude; recomendada para trilheiros experientes', 'Piquete ', 'dificil', 35),
     (default, 'Travessia Lapinha x Tabuleiro', 'Trilha de longo curso na Serra do Espinhaço, com subidas íngremes, travessias de rios e vista para o maior conjunto de cachoeiras de MG', 'Conceição do Mato Dentro', 'dificil', 36);
 
-TRUNCATE TABLE Usuario;
+TRUNCATE TABLE Resultado;
     
 SELECT * FROM Usuario;
 SELECT * FROM Quiz;
 SELECT * FROM Resultado;
+select * from Trilhas;
+
+
+SELECT * FROM Usuario AS u
+JOIN Resultado AS r
+ON r.fk_usuario = u.id
+JOIN Quiz AS q
+ON r.fk_quiz = q.id
+JOIN Trilhas as t
+ON r.fk_Trilhas = t.id;
+
+SELECT u.id, r.fk_quiz, r.pontos, r.nivel, t.nome AS trilha_sugerida
+FROM Usuario u
+JOIN Resultado r ON u.id = r.fk_usuario
+INNER JOIN (SELECT fk_usuario, MAX(dataJogo) AS ultima_data
+    FROM Resultado
+    GROUP BY fk_usuario) AS ultima_partida 
+    ON r.fk_usuario = ultima_partida.fk_usuario 
+    AND r.dataJogo = ultima_partida.ultima_data
+JOIN Trilhas t ON t.nivelNumero = r.pontos
+WHERE u.id = 1; 
+
+SELECT pontos, dataJogo
+FROM Resultado
+WHERE id = 1
+ORDER BY dataJogo ASC;
+
+ SELECT r.pontos, u.id, r.dataJogo
+	FROM Resultado r
+    JOIN Usuario u
+    ON u.id = r.fk_usuario
+    WHERE u.id = 1
+    ORDER BY dataJogo ASC;
