@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/dash_style.css">
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body onload="kpi(),obterDados()">
@@ -18,10 +19,11 @@
       <div class="div_imagem">
         <img class="imagem_logo" src="./pictures/Logo/30ebf307-01dc-47b4-9677-b223c2a2fbf9.png" alt="">
       </div>
-      <h1>Seja bem vindo(a) <span id="NomeUsuario">UserProfile!</span></h1>
+
+      <h1>Seja bem vindo(a), <span id="NomeUsuario">UserProfile!</span></h1>
 
       <div class="div_imagem">
-        <button class="botao_sair">Sair</button>
+        <button class="botao_sair" onclick="window.location.href='index_logado.html'">Dashboard<br>Sair</button>
       </div>
     </div>
 
@@ -213,13 +215,19 @@ const labels2 = horario;
 
     };
 
-
+   
 
    const myChart2 = new Chart(
         document.getElementById('myChart2'),
         config2
     );
 
+    
+}
+
+function sair(){
+    localStorage.clear();
+    window.location.href='index_logado.html';
 }
 
 </script>
